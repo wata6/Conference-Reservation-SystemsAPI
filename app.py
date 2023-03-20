@@ -18,7 +18,7 @@ if page == 'users':
         submit_button = st.form_submit_button(label='ユーザー登録')
 
     if submit_button:
-        url = 'http://127.0.0.1:8000/users'
+        url = 'https://wata6.github.io/Conference-Reservation-SystemsAPI/users'
         res = requests.post(
             url,
             data=json.dumps(data)
@@ -47,7 +47,7 @@ elif page == 'rooms':
         submit_button = st.form_submit_button(label='会議室登録')
 
     if submit_button:
-        url = 'http://127.0.0.1:8000/rooms'
+        url = 'https://wata6.github.io/Conference-Reservation-SystemsAPI/rooms'
         res = requests.post(
             url,
             data=json.dumps(data)
@@ -59,7 +59,7 @@ elif page == 'rooms':
 elif page == 'bookings':
     st.title('会議室予約画面')
     # ユーザー一覧取得
-    url_users = 'http://127.0.0.1:8000/users'
+    url_users = 'https://wata6.github.io/Conference-Reservation-SystemsAPI/users'
     res = requests.get(url_users)
     users = res.json()
     # ユーザー名をキー、ユーザーIDをバリュー
@@ -68,7 +68,7 @@ elif page == 'bookings':
         users_name[user['username']] = user['user_id']
 
     # 会議室一覧の取得
-    url_rooms = 'http://127.0.0.1:8000/rooms'
+    url_rooms = 'https://wata6.github.io/Conference-Reservation-SystemsAPI/rooms'
     res = requests.get(url_rooms)
     rooms = res.json()
     rooms_name = {}
@@ -84,7 +84,7 @@ elif page == 'bookings':
     st.table(df_rooms)
 
     # 予約一覧の取得
-    url_bookings = 'http://127.0.0.1:8000/bookings'
+    url_bookings = 'https://wata6.github.io/Conference-Reservation-SystemsAPI/bookings'
     res = requests.get(url_bookings)
     bookings = res.json()
     df_bookings = pd.DataFrame(bookings)
@@ -166,7 +166,7 @@ elif page == 'bookings':
             st.error('利用時間は9:00~20:00になります。')
         else:
             # 会議室予約
-            url = 'http://127.0.0.1:8000/bookings'
+            url = 'https://wata6.github.io/Conference-Reservation-SystemsAPI/bookings'
             res = requests.post(
                 url,
                 data=json.dumps(data)
